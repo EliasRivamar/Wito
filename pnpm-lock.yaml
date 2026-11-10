@@ -10,6 +10,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@wito/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       react:
         specifier: ^19.3.1
         version: 19.3.1
@@ -53,6 +56,12 @@ importers:
       vite:
         specifier: ^8.3.6
         version: 8.3.6(@types/node@24.19.2)
+
+  packages/shared:
+    dependencies:
+      uuidv7:
+        specifier: ^1.2.1
+        version: 1.2.1
 
 packages:
 
@@ -868,6 +877,10 @@ packages:
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+
+  uuidv7@1.2.1:
+    resolution: {integrity: sha512-4kPkK3/XTQW9Hbm4CaqfICn+kY9LJtDVEOfgsRRra/+n2Ofg4NqzRFceAkxvQ/Ud/6BpHOPzj8cirqM7TzTN5Q==}
+    hasBin: true
 
   vite@8.3.6:
     resolution: {integrity: sha512-UI7dK29NnS54Fk+mmo7o+jI6U8Fp7hDl+X5Q1k45WH+d4dSlbLVUETGQ+hfkNgvLQGyoElPj837nZyv4MBc0VA==}
@@ -1705,6 +1718,8 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+
+  uuidv7@1.2.1: {}
 
   vite@8.3.6(@types/node@24.19.2):
     dependencies:
