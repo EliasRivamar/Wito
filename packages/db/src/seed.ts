@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { ROLE_DEFAULTS } from "@wito/shared";
 import type { Db } from "./client";
-import { roles, rolePermissions } from "./schema";
+import { roles, rolePermissions, paymentMethods } from "./schema";
 
 /** Crea los roles base. Se puede ejecutar muchas veces sin duplicar nada. */
 export function seedRoles(db: Db) {
@@ -29,4 +29,23 @@ export function seedRoles(db: Db) {
         .run();
     }
   });
+}
+
+export function seedPaymentMethods(db: Db) {
+  const existing = db.select().from(paymentMethods).all();
+  if (existing.length > 0) return; // si ya hay, no se toca
+
+  db.insert(paymentMethods)
+    .values([
+      { name: "Efectivo", kind: "cash", sortOrder: 1 },
+      { name: "Tarjeta", kind: "card", sortOrder: 2 },
+      {
+        name: "Transferencia",
+        kind: "transfer",
+        requiresReference: true,
+        sortOrder: 3,
+      },
+      { name: "QR", kind: "qr", sortOrder: 4 },
+    ])
+    .run();
 }

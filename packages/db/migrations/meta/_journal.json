@@ -15,6 +15,13 @@
       "when": 1794286602410,
       "tag": "0001_white_tomorrow_man",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1794287572085,
+      "tag": "0002_silky_thunderbolts",
+      "breakpoints": true
     }
   ]
 }
