@@ -1,0 +1,58 @@
+export const PERMISSIONS = [
+  "orders.create",
+  "orders.edit",
+  "orders.void_item",
+  "orders.cancel",
+  "orders.apply_discount",
+  "orders.reopen",
+  "payments.collect",
+  "payments.refund",
+  "cash.open",
+  "cash.close",
+  "cash.move",
+  "catalog.view",
+  "catalog.edit",
+  "floor.edit",
+  "kitchen.view",
+  "kitchen.update",
+  "reports.view",
+  "users.manage",
+  "settings.manage",
+  "backups.manage",
+  "printing.manage",
+] as const;
+
+export type Permission = (typeof PERMISSIONS)[number];
+
+/** Roles base y sus permisos por defecto. */
+export const ROLE_DEFAULTS: Record<string, readonly Permission[]> = {
+  Dueño: PERMISSIONS,
+  Administrador: PERMISSIONS.filter((p) => p !== "backups.manage"),
+  Encargado: [
+    "orders.create",
+    "orders.edit",
+    "orders.void_item",
+    "orders.cancel",
+    "orders.apply_discount",
+    "orders.reopen",
+    "payments.collect",
+    "payments.refund",
+    "cash.open",
+    "cash.close",
+    "cash.move",
+    "catalog.view",
+    "kitchen.view",
+    "reports.view",
+  ],
+  Cajero: [
+    "orders.create",
+    "orders.edit",
+    "payments.collect",
+    "cash.open",
+    "cash.close",
+    "cash.move",
+    "catalog.view",
+  ],
+  Mozo: ["orders.create", "orders.edit", "catalog.view"],
+  Cocina: ["kitchen.view", "kitchen.update"],
+};
